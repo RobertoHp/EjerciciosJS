@@ -77,7 +77,7 @@ const INVERT = (cadena = '') => {
             console.error(`Surgio el siguiente error ${error}`);
         }
     }
-    // INVERT('Hola mundo...');
+    // INVERT('Javascript es un lenguajes de programacion genial');
 
 /**** EJERCICIO 6******/
 const FIND = (word, searchedWord) => {
@@ -86,13 +86,13 @@ const FIND = (word, searchedWord) => {
         console.log('La palabra no se encuentra en la cadena...');
 }
 
-// FIND('Hola mundo adios mundo mundo mundo', 'mundo');
+// FIND('Hola mundo adios mundo mundo', 'mundo');
 
 /**** EJERCICIO 7******/
 const PALINDROME = (cadena = '') => {
     try {
         if (typeof cadena === 'string' && cadena != '') {
-            let temporal = cadena.localeCompare(cadena.split('').reverse().join(''));
+            let temporal = cadena.toLowerCase().localeCompare(cadena.toLowerCase().split('').reverse().join(''));
             return (temporal === 0) ?
                 console.log(`La cadena ${cadena} es un palindromo...`) :
                 console.log(`La cadena ${cadena} no es un palindromo...`);
@@ -104,7 +104,7 @@ const PALINDROME = (cadena = '') => {
     }
 }
 
-// PALINDROME('');
+// PALINDROME('aNA');
 
 /**** EJERCICIO 8******/
 
@@ -121,4 +121,89 @@ const PATTERN = (cadena = '', pattern = undefined) => {
     }
 }
 
-PATTERN('xyz1 xyz2 xyz3 xyz4 xyz5', 'z');
+
+// PATTERN('Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste est voluptas deleniti officiis, alias odio, iure et eum, nostrum impedit dolores earum nisi enim veniam ipsum! Reprehenderit optio corporis exercitationem.', 'o');
+
+/*** EJERCICIO 9 ***/
+// console.time('rdm');
+const NUM_RANDOM = (start, limit) => {
+    try {
+        if (start <= limit && start && limit && !isNaN(start) && !isNaN(limit)) {
+            console.info(`El número generado aleatoriamente entre ${start} y ${limit} es ${Math.trunc(Math.random() * (limit - start) + start)}`);
+        } else {
+            console.warn('Los parametros ingresados no son numeros, faltan parametros o el limite es menor al inicio, intentalo de nuevo...');
+        }
+    } catch (error) {
+        console.error(`Ocurrio el siguiente error ${error}`);
+    }
+};
+
+// NUM_RANDOM();
+// NUM_RANDOM('fdfd');
+// NUM_RANDOM(55);
+// NUM_RANDOM(30, 10);
+// NUM_RANDOM(10, 30);
+// NUM_RANDOM(501, 600);
+// console.timeEnd('rdm');
+
+
+
+/**** EJERCICIO 10 (OPCION 1)******/
+console.time('loop');
+const CAPICUA = (num = '') => {
+        try {
+            if (!isNaN(num) && num) {
+                let temporal = '';
+                for (let i = num.toString().length - 1; i >= 0; i--)
+                    temporal += num.toString()[i];
+                console.info((temporal == num) ? 'Los numeros son iguales' : 'Los numeros no son iguales');
+            } else {
+                console.warn('No se ingreso parametro o no es de tipo numero');
+            }
+        } catch (error) {
+            console.error(`Surgio el siguiente error ${error}`);
+        }
+    }
+    // CAPICUA(121);
+    // console.timeEnd('loop');
+
+/**** EJERCICIO 10 (OPCION 2)******/
+// console.time('loop2');
+const CAPICUA2 = (num) => {
+        try {
+            if (!isNaN(num) && num) {
+                let conv = num.toString().split('').reverse().toString().replace(new RegExp(',', 'ig'), '');
+                console.info((num == conv) ?
+                    `CAPICUO: original ${num} al revés ${conv}` : `NO CAPICUO: original ${num} al revés ${conv}`);
+            } else {
+                console.warn('El dato no es positivo o no se ingresaron datos...');
+            }
+        } catch (error) {
+            console.error(`Surgio el siguiente error ${error}`);
+        }
+    }
+    // CAPICUA2(10001);
+    // console.timeEnd('loop2');
+
+
+
+/**** EJERCICIO 11******/
+
+// console.time('Factorial');
+const FACTORIAL = (num = '') => {
+        try {
+            if (!isNaN(num) && num && Math.sign(num) > 0) {
+                let temporal = 1;
+                for (let i = num; i > 0; i--) {
+                    temporal *= i;
+                }
+                console.log(`El factorial de ${num} es ${temporal}`);
+            } else {
+                console.warn('El dato no es valido o faltan parámetros, inténtalo de nuevo...');
+            }
+        } catch (error) {
+            console.error(`Surgio el siguiente error ${error}`);
+        }
+    }
+    // FACTORIAL('6');
+    // console.timeEnd('Factorial');
